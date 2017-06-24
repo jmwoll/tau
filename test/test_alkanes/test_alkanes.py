@@ -33,7 +33,9 @@ class TestAlkanes(unittest.TestCase):
         print(ccs)
         print(reference_ccs)
         plt.plot(ccs, reference_ccs, 'bo')
+        plt.savefig("alkanes.png")
         plt.show()
+
 
 if __name__ == '__main__':
     unittest.main()
