@@ -29,10 +29,10 @@ class TestAlkanes(unittest.TestCase):
         reference_ccs = [27.499, 35.806, 42.457, 50.114, 57.079]
         ccs = []
         for alkane in alkanes:
-            ccs.append(tau.pa_ccs(xyzfile="{}.xyz".format(alkane), buffer_gas="He"))
+            ccs.append(tau.pa_ccs(xyzfile="{}.xyz".format(alkane)))
         print(ccs)
         print(reference_ccs)
-        plt.plot(ccs,reference_ccs,'bo')
+        plt.plot(ccs, reference_ccs, 'bo')
         plt.show()
 
 if __name__ == '__main__':
