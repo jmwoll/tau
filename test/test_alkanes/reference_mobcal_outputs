@@ -1,0 +1,99 @@
+
+[27.499, 35.806, 42.457, 50.114, 57.079]
+
+
+input file label = C1H4 - 22Jun17 22:12          
+temperature = 2.9800E+02
+
+mobility calculation by MOBIL4 (HS scattering)
+inverse average PA mobility = 4.5900E+02
+average PA cross section = 2.7499E+01
+inverse average EHS mobility = 4.6073E+02
+average EHS cross section = 2.7602E+01
+
+mobility calculation by MOBIL2 (trajectory method)
+inverse average (second order) TM mobility = 3.8004E+02
+average TM cross section = 2.2786E+01
+standard deviation (percent) = 1.5857E+00
+
+
+
+
+
+input file label = C2H6 - 22Jun17 22:15          
+  temperature = 2.9800E+02
+
+  mobility calculation by MOBIL4 (HS scattering)
+  inverse average PA mobility = 6.2762E+02
+  average PA cross section = 3.5806E+01
+  inverse average EHS mobility = 6.3938E+02
+  average EHS cross section = 3.6477E+01
+
+  mobility calculation by MOBIL2 (trajectory method)
+  inverse average (second order) TM mobility = 5.3232E+02
+  average TM cross section = 3.0377E+01
+  standard deviation (percent) = 1.3325E+00
+
+
+input file label = C3H8 - 22Jun17 22:17          
+  temperature = 2.9800E+02
+
+  mobility calculation by MOBIL4 (HS scattering)
+  inverse average PA mobility = 7.5849E+02
+  average PA cross section = 4.2457E+01
+  inverse average EHS mobility = 7.7987E+02
+  average EHS cross section = 4.3653E+01
+
+  mobility calculation by MOBIL2 (trajectory method)
+  inverse average (second order) TM mobility = 6.6244E+02
+  average TM cross section = 3.7085E+01
+  standard deviation (percent) = 1.3675E+00
+
+
+ input file label = C4H10 - 22Jun17 22:22         
+  temperature = 2.9800E+02
+
+  mobility calculation by MOBIL4 (HS scattering)
+  inverse average PA mobility = 9.0443E+02
+  average PA cross section = 5.0114E+01
+  inverse average EHS mobility = 9.4029E+02
+  average EHS cross section = 5.2101E+01
+
+  mobility calculation by MOBIL2 (trajectory method)
+  inverse average (second order) TM mobility = 7.9790E+02
+  average TM cross section = 4.4215E+01
+  standard deviation (percent) = 1.0233E+00
+
+
+input file label = C5H12 - 22Jun17 22:27         
+  temperature = 2.9800E+02
+
+  mobility calculation by MOBIL4 (HS scattering)
+  inverse average PA mobility = 1.0366E+03
+  average PA cross section = 5.7079E+01
+  inverse average EHS mobility = 1.0834E+03
+  average EHS cross section = 5.9653E+01
+
+  mobility calculation by MOBIL2 (trajectory method)
+  inverse average (second order) TM mobility = 9.3444E+02
+  average TM cross section = 5.1454E+01
+  standard deviation (percent) = 2.3735E+00
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

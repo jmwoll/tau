@@ -1,0 +1,6 @@
+{
+  "venv": "", 
+  "name": "tau", 
+  "license": "GNU General Public License v3", 
+  "description": "tau - A project for calculating projection approximation collision cross section (CCS) values for ion mobility spectrometry."
+}
