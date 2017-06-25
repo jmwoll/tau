@@ -23,11 +23,11 @@ class TauTest(unittest.TestCase):
 
 
     def test_pa_ccs_atom(self):
-        ccs_val = tau.pa_ccs(xyzstring="C 0 0 0")
-        expected = math.pi*(tau.default_radii['C'])**2
+        ccs_val = tau.pa_ccs(xyzstring="C 0 0 0",radii='mobcal')
+        expected = math.pi*(tau.parameters['mobcal']['C'])**2
         print(ccs_val, 'should be', expected)
         self.assertTrue(abs(ccs_val - expected) < 0.9)
-        ccs_val = tau.pa_ccs(xyzstring="C 1 1 1")
+        ccs_val = tau.pa_ccs(xyzstring="C 1 1 1",radii='mobcal')
         print(ccs_val)
         self.assertTrue(abs(ccs_val - expected) < 0.9)
 

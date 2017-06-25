@@ -26,9 +26,18 @@ def log(msg):
         print(msg)
 
 
+parameters = {
 # radii from mobcal
-default_radii = {
-    'H': 2.2, 'C': 2.7
+# J. Phys. Chem. 1996, 100, 16082-16086;
+# J. Phys. Chem. A 1997, 101, 968.
+# Chem. Phys. Lett. 1996, 261, 86-91.
+'mobcal': {
+    'H': 2.2, 'C': 2.7, 'N': 2.7, 'O': 2.7
+},
+# J. Phys. Chem. B, Vol. 114, No. 2, 2010.
+'siu_guo_2010': {
+    'H': 2.01, 'C': 2.35, 'N': 2.26, 'O': 2.26
+}
 }
 
 
@@ -54,14 +63,21 @@ def load_molecule(xyzfile=None, xyzstring=None):
     return mol
 
 
-def pa_ccs(xyzfile=None, xyzstring=None, radii=None, num_rotamers=300):
-    global default_radii
+def pa_ccs(xyzfile=None, xyzstring=None, radii=None,
+    num_rotamers=300):
+    global parameters
     assert xyzfile is not None or xyzstring is not None, (
         "the xyzfile must be specified")
-    if radii is None or radii.lower() == 'mobcal':
-        log("No radii specified loading default (mobcal) radii:")
-        log(default_radii)
-        radii = default_radii
+    if radii is None or radii.lower() == 'siu_guo_2010':
+        log("No radii specified loading default radii:")
+        log("cite these parameters as:")
+        log("Chi-Kit Siu Yuzhu Guo, Irine S. Saminathan, Alan C. Hopkinson," +
+            " and K. W. Michael Siu*J. Phys. Chem. B, Vol. 114, No. 2, 2010.")
+        log("parameters are:\n")
+        log(parameters['siu_guo_2010'])
+        radii = parameters['siu_guo_2010']
+    else:
+        radii = parameters[radii]
 
     mol = (load_molecule(xyzfile=xyzfile) if xyzfile is not None else
         load_molecule(xyzstring=xyzstring))
@@ -123,6 +139,52 @@ def pa_ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y):
                     hit_atom = True  # no double/multiple hits
 
     return (hits / (float(trials))) * (max_x - min_x) * (max_y - min_y)
+
+
+def ehs_ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y):
+    max_min_x = max_x - min_x
+    max_min_y = max_y - min_y
+
+    hits = 0
+    trials = 1000
+    hit_atom = False
+
+    for _ in range(trials):
+        rand_x = random.random() * max_min_x + min_x
+        rand_y = random.random() * max_min_y + min_y
+        hit_atom = False
+        for atm in mol:
+            dx, dy = abs(rand_x - atm[1]), abs(rand_y - atm[2])
+            if dx * dx + dy * dy < (radii[atm[0]]) ** 2:
+                assert False,"to be implemented"
+                ## pseudocode:
+                ##  create a line starting "far away"
+                ##  and have it point onto x=rand_x,y=rand_y,z=0
+
+
+    return (hits / (float(trials))) * (max_x - min_x) * (max_y - min_y)
+
+
+class Line(object):
+
+    def __init__(self, origin=None, direction=None):
+        self.origin=origin; self.direction=direction
+
+class Sphere(object):
+
+    def __init__(self, center=None, radius=None):
+        self.radius=radius; self.center=center
+
+def line_sphere_intersections(line, sphere):
+    oc = (line.origin[0]-sphere.center[0],
+        line.origin[1]-sphere.center[1], line.origin[2]-sphere.center[2])
+    oc_sum = oc.x + oc.y + oc.z
+    oc_sq = oc_sum**2
+    radicant = oc_sq - abs(oc_sq) + sphere.radius**2
+    if radicant < 0:
+        return False
+    return -oc_sum + radicant, -oc_sum - radicant
+
 
 
 
