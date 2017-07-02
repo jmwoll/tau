@@ -33,7 +33,13 @@ class TestAlkanes(unittest.TestCase):
             "methane": 27.499, "ethane": 35.806, "propane": 42.457,
             "butane": 50.114, "pentane": 57.079, "adamantane": 64.799,
             "penguinone": 73.598, "barrelene": 56.733,
-            "hirsutene": 88.677,
+            "hirsutene": 88.677, "testosterone": 108.71,
+            "paclitaxel": 231.00, "abacavir": 117.27,
+            "ciclosporin": 286.18, "codeine": 104.30,
+            "talinolol": 165.93, "yangonin": 115.52,
+            "vernakalant": 145.82, "octabenzone": 149.15,
+            "melatonin": 108.92, "epirubicin": 172.70,
+
         }
 
         pa_ccs_tau = {}
@@ -46,6 +52,7 @@ class TestAlkanes(unittest.TestCase):
         for key in pa_ccs_tau:
             px, py = pa_ccs_tau[key], pa_ccs_ref[key]
             plt.text(px, py+1, key, horizontalalignment='center')
+        plt.savefig('benchmark.png')
         plt.show()
 
         error = rms_error([pa_ccs_tau[key] for key in sorted(pa_ccs_tau)], [pa_ccs_ref[key] for key in sorted(pa_ccs_ref)])

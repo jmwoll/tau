@@ -64,7 +64,7 @@ def load_molecule(xyzfile=None, xyzstring=None):
 
 
 def pa_ccs(xyzfile=None, xyzstring=None, radii=None,
-    num_rotamers=300):
+    num_rotamers=800):
     global parameters
     assert xyzfile is not None or xyzstring is not None, (
         "the xyzfile must be specified")
@@ -119,12 +119,11 @@ def rotate(mol, rot_x=None, rot_y=None, rot_z=None):
     return rot_mol
 
 
-def pa_ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y):
+def pa_ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y, trials=4000):
     max_min_x = max_x - min_x
     max_min_y = max_y - min_y
 
     hits = 0
-    trials = 1000
     hit_atom = False
 
     for _ in range(trials):
@@ -184,7 +183,3 @@ def line_sphere_intersections(line, sphere):
     if radicant < 0:
         return False
     return -oc_sum + radicant, -oc_sum - radicant
-
-
-
-
