@@ -17,23 +17,25 @@
 from matplotlib import pyplot as plt
 import unittest
 import math
-from tau import tau
+from tau import ehs
 
 
 
 class TestAlkanes(unittest.TestCase):
 
 
-    def test_pa_ccs_alkanes(self):
+    def test_ehs_ccs_alkanes(self):
         alkanes = ["methane", "ethane", "propane", "butane", "pentane"]
-        reference_ccs = [27.499, 35.806, 42.457, 50.114, 57.079]
+        reference_pa_ccs = [27.499, 35.806, 42.457, 50.114, 57.079]
+        reference_ehs_ccs = [27.602, 36.477, 43.653, 52.101, 59.653]
         ccs = []
         for alkane in alkanes:
-            ccs.append(tau.pa_ccs(xyzfile="{}.xyz".format(alkane),radii='mobcal'))
+            ccs.append(ehs.ehs_ccs(xyzfile="{}.xyz".format(alkane)))
         print(ccs)
-        print(reference_ccs)
-        plt.plot(ccs, reference_ccs, 'bo')
-        plt.savefig("alkanes.png")
+        print(reference_ehs_ccs)
+        plt.plot(ccs, reference_pa_ccs, 'bo')
+        plt.plot(ccs, reference_ehs_ccs, 'ro')
+        plt.savefig("alkanes_ehs.png")
         plt.show()
 
 

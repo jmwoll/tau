@@ -1,0 +1,60 @@
+-- adamantane
+input file label = C10H16 -  2Jul17 18:38
+  temperature = 2.9800E+02
+
+  mobility calculation by MOBIL4 (HS scattering)
+  inverse average PA mobility = 1.1917E+03
+  average PA cross section = 6.4799E+01
+  inverse average EHS mobility = 1.2551E+03
+  average EHS cross section = 6.8247E+01
+
+  mobility calculation by MOBIL2 (trajectory method)
+  inverse average (second order) TM mobility = 1.1103E+03
+  average TM cross section = 6.0377E+01
+  standard deviation (percent) = 1.3845E+00
+
+
+-- penguinone
+input file label = C10H14O1 -  2Jul17 18:44
+temperature = 2.9800E+02
+
+mobility calculation by MOBIL4 (HS scattering)
+inverse average PA mobility = 1.3553E+03
+average PA cross section = 7.3598E+01
+inverse average EHS mobility = 1.4249E+03
+average EHS cross section = 7.7377E+01
+
+mobility calculation by MOBIL2 (trajectory method)
+inverse average (second order) TM mobility = 1.2712E+03
+average TM cross section = 6.9032E+01
+standard deviation (percent) = 1.8050E+00
+
+-- barrelene
+input file label = C8H8 -  2Jul17 19:03
+ temperature = 2.9800E+02
+
+ mobility calculation by MOBIL4 (HS scattering)
+ inverse average PA mobility = 1.0388E+03
+ average PA cross section = 5.6733E+01
+ inverse average EHS mobility = 1.0737E+03
+ average EHS cross section = 5.8639E+01
+
+ mobility calculation by MOBIL2 (trajectory method)
+ inverse average (second order) TM mobility = 9.3944E+02
+ average TM cross section = 5.1309E+01
+ standard deviation (percent) = 1.1878E+00
+
+ -- hirsutene
+ input file label = C14H22 -  2Jul17 19:06
+  temperature = 2.9800E+02
+
+  mobility calculation by MOBIL4 (HS scattering)
+  inverse average PA mobility = 1.6374E+03
+  average PA cross section = 8.8677E+01
+  inverse average EHS mobility = 1.7457E+03
+  average EHS cross section = 9.4542E+01
+
+  mobility calculation by MOBIL2 (trajectory method)
+  inverse average (second order) TM mobility = 1.5584E+03
+  average TM cross section = 8.4395E+01
+  standard deviation (percent) = 1.9800E+00
