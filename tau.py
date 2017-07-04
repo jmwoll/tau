@@ -71,7 +71,7 @@ def load_molecule(xyzfile=None, xyzstring=None):
 
 
 def pa_ccs(xyzfile=None, xyzstring=None, radii=None,
-    num_rotamers=5000, fast=None):
+    num_rotamers=1500, fast=None, grid_size=7500):
     global parameters
     if fast is None:
         fast = numpy_loaded
@@ -101,7 +101,7 @@ def pa_ccs(xyzfile=None, xyzstring=None, radii=None,
         max_x = max([atm[1] for atm in mol]) + 5
         min_y = min([atm[2] for atm in mol]) - 5
         max_y = max([atm[2] for atm in mol]) + 5
-        ccs_sum += ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y)
+        ccs_sum += ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y, trials=grid_size)
     return ccs_sum / float(num_rotamers)
 
 
@@ -152,7 +152,7 @@ def pa_ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y, trials=5000):
     return (hits / (float(trials))) * (max_x - min_x) * (max_y - min_y)
 
 
-def fast_pa_ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y, trials=10000):
+def fast_pa_ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y, trials=5000):
      rand_xs = np.random.uniform(min_x, max_x, size=trials)
      rand_ys = np.random.uniform(min_y, max_y, size=trials)
      #deltas = (1 for randx,randy in zip(rand_xs, rand_ys) if any((abs(randx - atm[1])**2 + abs(randy - atm[2])**2 < (radii[atm[0]])**2 for atm in mol)))

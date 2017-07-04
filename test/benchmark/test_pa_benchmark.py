@@ -47,7 +47,7 @@ class TestAlkanes(unittest.TestCase):
 
         pa_ccs_tau = {}
         for name in pa_ccs_ref:
-            pa_ccs_tau[name] = tau.pa_ccs(xyzfile="{}.xyz".format(name),radii='mobcal')
+            pa_ccs_tau[name] = tau.pa_ccs(xyzfile="{}.xyz".format(name),radii='mobcal',grid_size=5000)
         print(pa_ccs_tau)
         print(pa_ccs_ref)
 
