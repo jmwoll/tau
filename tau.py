@@ -25,6 +25,13 @@ def log(msg):
     if _log_print:
         print(msg)
 
+numpy_loaded = True
+try:
+    import numpy as np
+except:
+    numpy_loaded = False
+    log("Could not load numpy.")
+
 
 parameters = {
 # radii from mobcal
@@ -64,8 +71,10 @@ def load_molecule(xyzfile=None, xyzstring=None):
 
 
 def pa_ccs(xyzfile=None, xyzstring=None, radii=None,
-    num_rotamers=800):
+    num_rotamers=30000, fast=None):
     global parameters
+    if fast is None:
+        fast = numpy_loaded
     assert xyzfile is not None or xyzstring is not None, (
         "the xyzfile must be specified")
     if radii is None or radii.lower() == 'siu_guo_2010':
@@ -82,7 +91,8 @@ def pa_ccs(xyzfile=None, xyzstring=None, radii=None,
     mol = (load_molecule(xyzfile=xyzfile) if xyzfile is not None else
         load_molecule(xyzstring=xyzstring))
     ccs_sum = 0.0
-    print(mol)
+
+    ccs_rotamer = fast_pa_ccs_rotamer if fast else pa_ccs_rotamer
     for _ in range(num_rotamers):
         randrot = [4 * math.pi * random.random() for _ in range(3)]
         mol = rotate(mol, rot_x=randrot[0], rot_y=randrot[1],
@@ -91,7 +101,7 @@ def pa_ccs(xyzfile=None, xyzstring=None, radii=None,
         max_x = max([atm[1] for atm in mol]) + 5
         min_y = min([atm[2] for atm in mol]) - 5
         max_y = max([atm[2] for atm in mol]) + 5
-        ccs_sum += pa_ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y)
+        ccs_sum += ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y)
     return ccs_sum / float(num_rotamers)
 
 
@@ -119,7 +129,7 @@ def rotate(mol, rot_x=None, rot_y=None, rot_z=None):
     return rot_mol
 
 
-def pa_ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y, trials=4000):
+def pa_ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y, trials=500000):
     max_min_x = max_x - min_x
     max_min_y = max_y - min_y
 
@@ -140,3 +150,43 @@ def pa_ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y, trials=4000):
                     break # no double/multiple hits
 
     return (hits / (float(trials))) * (max_x - min_x) * (max_y - min_y)
+
+
+def fast_pa_ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y, trials=4000):
+     rand_xs = np.random.uniform(min_x, max_x, size=trials)
+     rand_ys = np.random.uniform(min_y, max_y, size=trials)
+     deltas = (1 for randx,randy in zip(rand_xs, rand_ys) if any((abs(randx - atm[1])**2 + abs(randy - atm[2])**2 < (radii[atm[0]])**2 for atm in mol)))
+     hits = np.zeros(trials)
+     for atm in mol:
+         atm_x, atm_y, atm_rad_sq = atm[1], atm[2], (radii[atm[0]] ** 2)
+         # hits += len( ((rand_xs - atm_x)**2 + (rand_ys - atm_y)**2) < atm_rad_sq )
+         hits = hits + ( ((rand_xs - atm_x)**2 + (rand_ys - atm_y)**2) < atm_rad_sq )
+
+     return ( len([hit for hit in hits if hit > 0]) / float(trials) ) * (max_x - min_x) * (max_y - min_y)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##

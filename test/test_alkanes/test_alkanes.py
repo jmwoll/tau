@@ -29,7 +29,7 @@ class TestAlkanes(unittest.TestCase):
         reference_ccs = [27.499, 35.806, 42.457, 50.114, 57.079]
         ccs = []
         for alkane in alkanes:
-            ccs.append(tau.pa_ccs(xyzfile="{}.xyz".format(alkane),radii='mobcal'))
+            ccs.append(tau.pa_ccs(xyzfile="{}.xyz".format(alkane),radii='mobcal', fast=True))
         print(ccs)
         print(reference_ccs)
         plt.plot(ccs, reference_ccs, 'bo')
