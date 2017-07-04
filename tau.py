@@ -131,55 +131,12 @@ def pa_ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y, trials=4000):
         rand_y = random.random() * max_min_y + min_y
         hit_atom = False
         for atm in mol:
+            #assert(not hit_atom)
             dx, dy = abs(rand_x - atm[1]), abs(rand_y - atm[2])
             if dx * dx + dy * dy < (radii[atm[0]]) ** 2:
                 if not hit_atom:
                     hits += 1
-                    hit_atom = True  # no double/multiple hits
+                    hit_atom = True
+                    break # no double/multiple hits
 
     return (hits / (float(trials))) * (max_x - min_x) * (max_y - min_y)
-
-
-def ehs_ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y):
-    max_min_x = max_x - min_x
-    max_min_y = max_y - min_y
-
-    hits = 0
-    trials = 1000
-    hit_atom = False
-
-    for _ in range(trials):
-        rand_x = random.random() * max_min_x + min_x
-        rand_y = random.random() * max_min_y + min_y
-        hit_atom = False
-        for atm in mol:
-            dx, dy = abs(rand_x - atm[1]), abs(rand_y - atm[2])
-            if dx * dx + dy * dy < (radii[atm[0]]) ** 2:
-                assert False,"to be implemented"
-                ## pseudocode:
-                ##  create a line starting "far away"
-                ##  and have it point onto x=rand_x,y=rand_y,z=0
-
-
-    return (hits / (float(trials))) * (max_x - min_x) * (max_y - min_y)
-
-
-class Line(object):
-
-    def __init__(self, origin=None, direction=None):
-        self.origin=origin; self.direction=direction
-
-class Sphere(object):
-
-    def __init__(self, center=None, radius=None):
-        self.radius=radius; self.center=center
-
-def line_sphere_intersections(line, sphere):
-    oc = (line.origin[0]-sphere.center[0],
-        line.origin[1]-sphere.center[1], line.origin[2]-sphere.center[2])
-    oc_sum = oc.x + oc.y + oc.z
-    oc_sq = oc_sum**2
-    radicant = oc_sq - abs(oc_sq) + sphere.radius**2
-    if radicant < 0:
-        return False
-    return -oc_sum + radicant, -oc_sum - radicant

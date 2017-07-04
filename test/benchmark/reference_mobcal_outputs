@@ -224,3 +224,63 @@ mobility calculation by MOBIL2 (trajectory method)
 inverse average (second order) TM mobility = 3.1873E+03
 average TM cross section = 1.7145E+02
 standard deviation (percent) = 1.2579E+00
+
+-- alprenolol
+input file label = C15H23N1O2 -  3Jul17 21:42
+temperature = 2.9800E+02
+
+mobility calculation by MOBIL4 (HS scattering)
+inverse average PA mobility = 2.1318E+03
+average PA cross section = 1.1517E+02
+inverse average EHS mobility = 2.2925E+03
+average EHS cross section = 1.2385E+02
+
+mobility calculation by MOBIL2 (trajectory method)
+inverse average (second order) TM mobility = 2.0714E+03
+average TM cross section = 1.1190E+02
+standard deviation (percent) = 1.4915E+00
+
+-- trioxifene
+input file label = C29H29N1O3 -  3Jul17 21:57
+temperature = 2.9800E+02
+
+mobility calculation by MOBIL4 (HS scattering)
+inverse average PA mobility = 3.1825E+03
+average PA cross section = 1.7134E+02
+inverse average EHS mobility = 3.3830E+03
+average EHS cross section = 1.8214E+02
+
+mobility calculation by MOBIL2 (trajectory method)
+inverse average (second order) TM mobility = 3.0961E+03
+average TM cross section = 1.6669E+02
+standard deviation (percent) = 2.4174E+00
+
+-- methylaminoethanol
+input file label = C3H9N1O1 -  3Jul17 22:07
+temperature = 2.9800E+02
+
+mobility calculation by MOBIL4 (HS scattering)
+inverse average PA mobility = 9.8005E+02
+average PA cross section = 5.3907E+01
+inverse average EHS mobility = 1.0188E+03
+average EHS cross section = 5.6038E+01
+
+mobility calculation by MOBIL2 (trajectory method)
+inverse average (second order) TM mobility = 8.8214E+02
+average TM cross section = 4.8524E+01
+standard deviation (percent) = 1.5345E+00
+
+-- nanokid
+input file label = C39H42O2 -  3Jul17 22:13
+  temperature = 2.9800E+02
+
+  mobility calculation by MOBIL4 (HS scattering)
+  inverse average PA mobility = 4.1864E+03
+  average PA cross section = 2.2519E+02
+  inverse average EHS mobility = 4.5877E+03
+  average EHS cross section = 2.4678E+02
+
+  mobility calculation by MOBIL2 (trajectory method)
+  inverse average (second order) TM mobility = 4.1957E+03
+  average TM cross section = 2.2570E+02
+  standard deviation (percent) = 1.6578E+00

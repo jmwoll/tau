@@ -39,6 +39,9 @@ class TestAlkanes(unittest.TestCase):
             "talinolol": 165.93, "yangonin": 115.52,
             "vernakalant": 145.82, "octabenzone": 149.15,
             "melatonin": 108.92, "epirubicin": 172.70,
+            "alprenolol": 115.17, "trioxifene": 171.34,
+            "methylaminoethanol": 53.907,
+            "nanokid": 225.19,
 
         }
 
