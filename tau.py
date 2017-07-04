@@ -71,7 +71,7 @@ def load_molecule(xyzfile=None, xyzstring=None):
 
 
 def pa_ccs(xyzfile=None, xyzstring=None, radii=None,
-    num_rotamers=1500, fast=None, grid_size=7500):
+    num_rotamers=3000, fast=None, grid_size=6000):
     global parameters
     if fast is None:
         fast = numpy_loaded
@@ -162,4 +162,5 @@ def fast_pa_ccs_rotamer(mol, radii, min_x, max_x, min_y, max_y, trials=5000):
          # hits += len( ((rand_xs - atm_x)**2 + (rand_ys - atm_y)**2) < atm_rad_sq )
          hits = hits + ( ((rand_xs - atm_x)**2 + (rand_ys - atm_y)**2) < atm_rad_sq )
 
-     return ( len([hit for hit in hits if hit > 0]) / float(trials) ) * (max_x - min_x) * (max_y - min_y)
+     #return ( len([hit for hit in hits if hit > 0]) / float(trials) ) * (max_x - min_x) * (max_y - min_y)
+     return ( np.count_nonzero(hits) / float(trials) ) * (max_x - min_x) * (max_y - min_y)
