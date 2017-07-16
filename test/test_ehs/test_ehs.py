@@ -35,6 +35,9 @@ class TestAlkanes(unittest.TestCase):
         print(reference_ehs_ccs)
         plt.plot(ccs, reference_pa_ccs, 'bo')
         plt.plot(ccs, reference_ehs_ccs, 'ro')
+        from scipy import stats
+        slope, intercept, r_value, p_value, std_err = stats.linregress(ccs, reference_ehs_ccs)
+        print("slope {} | intercept {} | r2 {}".format(slope, intercept, r_value))
         plt.savefig("alkanes_ehs.png")
         plt.show()
 

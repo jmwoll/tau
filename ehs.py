@@ -104,7 +104,7 @@ def last_ray(ray, molecule, radii=None, max_iterations=8):
     while True:
         new_ray_dir, new_ray_origin = ray_trace(ray, molecule, radii=radii)
 
-        if new_ray_dir is None or iter_count >= max_iterations:
+        if new_ray_dir is None:
             return ray
 
         #new_ray_origin = (new_ray_scalar * ray.direction[0] + ray.origin[0],
@@ -114,7 +114,12 @@ def last_ray(ray, molecule, radii=None, max_iterations=8):
         new_ray_dir = (new_ray_dir[0] / new_ray_len, new_ray_dir[1] / new_ray_len,
             new_ray_dir[2] / new_ray_len)
         ray = Line(direction=new_ray_dir, origin=new_ray_origin)
+
         iter_count += 1
+        if iter_count >= max_iterations:
+            return ray
+
+
 
 
 def ray_trace(ray, molecule, radii=None):
@@ -155,7 +160,7 @@ def first_collision(ray, molecule, radii=None):
         # only accept collisions that don't turn backwards,
         # as the buffer gas only moves in one direction.
         # otherwise, it might bounce backwards
-        # artificiall between atoms.
+        # artificially between atoms.
         #positive_keys = [key for key in atm_coll_dct.keys() if key > 0]
         #if positive_keys:
         #fst_coll = min(positive_keys)
