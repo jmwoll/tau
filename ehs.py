@@ -74,6 +74,19 @@ def ehs_ccs(xyzfile=None, xyzstring=None, radii=None,
     return ccs_sum / float(num_rotamers)
 
 
+def fast_ehs_ccs_rotamer(molecule, min_x, max_x, min_y, max_y, trials=5000, radii=None):
+    rand_xs = np.random.uniform(min_x, max_x, size=trials)
+    rand_ys = np.random.uniform(min_y, max_y, size=trials)
+    min_z = min([atom[3] for atom in molecule]) - 20
+    n = [0, 0, 1]
+
+    ray_dir = np.full((trials, 3), n)
+    # ray_org = rand_x, rand_y, min_z
+    # now find the first intersection of this ray
+    # with all atoms in the molecule
+    
+
+
 def ehs_ccs_rotamer(molecule, min_x, max_x, min_y, max_y, trials=5000, radii=None):
     assert(radii is not None)
     max_min_x = max_x - min_x
