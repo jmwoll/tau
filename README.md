@@ -2,6 +2,9 @@
 This project aims to provide a simple to use python library for the calculation of
 collision cross section (CCS) values for ion mobility spectrometry.
 Currently, only the projection approximation (PA) method is implemented.
+
+Please consider using https://github.com/jmwoll/goccs instead, which is a more up-to-date version of the project.
+
 For example, the simple python script
 ```
 from matplotlib import pyplot as plt

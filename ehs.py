@@ -74,6 +74,10 @@ def ehs_ccs(xyzfile=None, xyzstring=None, radii=None,
     return ccs_sum / float(num_rotamers)
 
 
+
+# vectorized (i.e. numpy) implementation of EHS algorithm seems
+# difficult (as in: possible, but time consuming). So maybe
+# implement this in C++/Rust instead.
 def fast_ehs_ccs_rotamer(molecule, min_x, max_x, min_y, max_y, trials=5000, radii=None):
     rand_xs = np.random.uniform(min_x, max_x, size=trials)
     rand_ys = np.random.uniform(min_y, max_y, size=trials)
@@ -84,7 +88,21 @@ def fast_ehs_ccs_rotamer(molecule, min_x, max_x, min_y, max_y, trials=5000, radi
     # ray_org = rand_x, rand_y, min_z
     # now find the first intersection of this ray
     # with all atoms in the molecule
-    
+    #
+    # line == origin + t * direction
+    # origin is randx, randy, minz and direction is n
+    for atom in molecule:
+        oc = (line.origin[0]-sphere.center[0],
+            line.origin[1]-sphere.center[1], line.origin[2]-sphere.center[2])
+        oc_sum = oc[0] + oc[1] + oc[2]
+        oc_abs_sq = (oc[0]*oc[0] + oc[1]*oc[1] + oc[2]*oc[2])
+        oc_sq = oc_sum**2
+        radicant = oc_sq - oc_abs_sq + sphere.radius**2 # is this alright?
+        if radicant < 0:
+            return False
+        return -oc_sum + (radicant)**0.5, -oc_sum - (radicant)**0.5
+
+
 
 
 def ehs_ccs_rotamer(molecule, min_x, max_x, min_y, max_y, trials=5000, radii=None):
